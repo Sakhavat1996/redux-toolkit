@@ -1,13 +1,17 @@
 import './App.css'
 import Counter from './components/Counter'
+import Form from './components/Form'
+import Header from "./components/Header"
+import Products from './components/Products'
+import {useDispatch , useSelector} from 'react-redux'
 
-function App() {
-
+export default function App() {
+  const isAuth = useSelector(state=>state.auth.isAuth) 
   return (
     <>
-      <Counter/>
+      <Header/>
+      {!isAuth ? <Form/> : <Products/>}
+      {isAuth && <Counter/>}
     </>
   )
 }
-
-export default App
